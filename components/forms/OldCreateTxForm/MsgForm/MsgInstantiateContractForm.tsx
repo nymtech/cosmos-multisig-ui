@@ -97,12 +97,12 @@ const MsgInstantiateContractForm = ({
         return false;
       }
 
-      if (!amount || Number(amount) <= 0) {
+      if (selectedDenom.value === customDenomOption.value && amount && Number(amount) <= 0) {
         setAmountError("Amount must be greater than 0");
         return false;
       }
 
-      if (selectedDenom.value === customDenomOption.value && !Number.isInteger(Number(amount))) {
+      if (selectedDenom.value === customDenomOption.value && amount && !Number.isInteger(Number(amount))) {
         setAmountError("Amount cannot be decimal for custom denom");
         return false;
       }
