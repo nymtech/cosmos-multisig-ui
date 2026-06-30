@@ -1,3 +1,11 @@
+🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨<br>
+🚨🚨 This project is not maintained anymore. The deployment previously<br>
+🚨🚨 provided by Confio does not work anymore.<br>
+🚨🚨 The main reason for this is the discontinuation of hosted drgraph<br>
+🚨🚨 databases. If you want to use this codebase, the database layer<br>
+🚨🚨 would need to be replaced by whatever database solution you prefer.<br>
+🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
+
 # Cosmoshub Multisig App
 
 This app allows for multisig users to create, sign and broadcast transactions on any stargate enabled chain. It's built with Cosmjs, Next.js, Dgraph and Vercel.

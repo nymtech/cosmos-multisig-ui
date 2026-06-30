@@ -13,16 +13,18 @@ const gasOfMsg = (msgType: MsgTypeUrl): number => {
       // a lot of auto-claims. See https://github.com/cosmos/cosmos-multisig-ui/issues/177.
       return 400_000;
     case MsgTypeUrls.Undelegate:
-      return 400_000;
+      return 600_000;
     case MsgTypeUrls.BeginRedelegate:
-      return 400_000;
+      return 600_000;
     // Distribution
     case MsgTypeUrls.FundCommunityPool:
       return 100_000;
     case MsgTypeUrls.SetWithdrawAddress:
       return 100_000;
     case MsgTypeUrls.WithdrawDelegatorReward:
-      return 100_000;
+      // On the Hub we now claim so many coins at once that this operation can become gas expensive.
+      // See e.g. https://www.mintscan.io/cosmos/tx/EA7EC3F6F08DA4E6D419359F264B34AB27D2AAE7FF40267E7E760927475157B3
+      return 500_000;
     // Vesting
     case MsgTypeUrls.CreateVestingAccount:
       return 100_000;
