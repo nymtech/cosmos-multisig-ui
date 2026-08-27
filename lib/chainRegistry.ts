@@ -135,7 +135,16 @@ const getChainInfoFromJsons = (
 
   const firstAsset = cdnRegistryAssets[0];
   const logo = getLogoUri(registryChain, firstAsset);
-  const nodeAddresses = registryChain.apis?.rpc.map(({ address }) => address) ?? [];
+  // const nodeAddresses = registryChain.apis?.rpc.map(({ address }) => address) ?? [];
+  const SANDBOX_RPC = "https://validator-sandbox-1.nymtech.net";
+
+let nodeAddresses = registryChain.apis?.rpc.map(({ address }) => address) ?? [];
+if (registryChain.chain_name === "nyxtestnet") {
+  nodeAddresses = [
+    SANDBOX_RPC,
+    ...nodeAddresses.filter((address) => address !== SANDBOX_RPC),
+  ];
+}
 
   let explorerLinks: ExplorerLinks = { tx: "", account: "" };
 
