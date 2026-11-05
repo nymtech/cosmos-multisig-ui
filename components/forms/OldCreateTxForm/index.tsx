@@ -285,6 +285,18 @@ const OldCreateTxForm = ({ router, senderAddress, accountOnChain }: OldCreateTxF
                 onClick={() => addMsgType(MsgTypeUrls.UpdateAdmin)}
               />
             </li>
+            <li>
+              <Button
+                label="AuthzUnpinCodes"
+                onClick={() => addMsgType(MsgTypeUrls.AuthzUnpinCodes)}
+              />
+            </li>
+            <li>
+              <Button
+                label="AuthzPinCodes"
+                onClick={() => addMsgType(MsgTypeUrls.AuthzPinCodes)}
+              />
+            </li>
           </ul>
         </div>
       </div>

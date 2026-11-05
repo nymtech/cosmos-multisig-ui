@@ -1,3 +1,4 @@
+import { MsgExec } from "cosmjs-types/cosmos/authz/v1beta1/tx";
 import { MsgSend } from "cosmjs-types/cosmos/bank/v1beta1/tx";
 import {
   MsgFundCommunityPool,
@@ -37,6 +38,11 @@ export const MsgTypeUrls = {
   Vote: "/cosmos.gov.v1beta1.MsgVote",
   // IBC
   Transfer: "/ibc.applications.transfer.v1.MsgTransfer",
+  // Authz
+  Exec: "/cosmos.authz.v1beta1.MsgExec",
+  // UI-only form selectors; EncodeObject.typeUrl is still Exec
+  AuthzPinCodes: "/nymtech.multisig.ui.AuthzPinCodes",
+  AuthzUnpinCodes: "/nymtech.multisig.ui.AuthzUnpinCodes",
   // CosmWasm
   InstantiateContract: "/cosmwasm.wasm.v1.MsgInstantiateContract",
   InstantiateContract2: "/cosmwasm.wasm.v1.MsgInstantiateContract2",
@@ -64,6 +70,8 @@ export const MsgCodecs = {
   [MsgTypeUrls.Vote]: MsgVote,
   // IBC
   [MsgTypeUrls.Transfer]: MsgTransfer,
+  // Authz
+  [MsgTypeUrls.Exec]: MsgExec,
   // CosmWasm
   [MsgTypeUrls.InstantiateContract]: MsgInstantiateContract,
   [MsgTypeUrls.InstantiateContract2]: MsgInstantiateContract2,

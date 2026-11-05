@@ -7,6 +7,7 @@ import StackableContainer from "../../layout/StackableContainer";
 import TxMsgBeginRedelegateDetails from "./TxMsgBeginRedelegateDetails";
 import TxMsgCreateVestingAccountDetails from "./TxMsgCreateVestingAccountDetails";
 import TxMsgDelegateDetails from "./TxMsgDelegateDetails";
+import TxMsgExecDetails from "./TxMsgExecDetails";
 import TxMsgExecuteContractDetails from "./TxMsgExecuteContractDetails";
 import TxMsgFundCommunityPoolDetails from "./TxMsgFundCommunityPoolDetails";
 import TxMsgInstantiateContract2Details from "./TxMsgInstantiateContract2Details";
@@ -59,6 +60,8 @@ const TxMsgDetails = ({ typeUrl, value: msgValue }: EncodeObject) => {
       return <TxMsgExecuteContractDetails msgValue={msgValue} />;
     case MsgTypeUrls.MigrateContract:
       return <TxMsgMigrateContractDetails msgValue={msgValue} />;
+    case MsgTypeUrls.Exec:
+      return <TxMsgExecDetails msgValue={msgValue} />;
     default:
       return null;
   }

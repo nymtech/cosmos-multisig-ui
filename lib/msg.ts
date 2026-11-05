@@ -1,10 +1,16 @@
 import { txCosmJsTypes } from "@/types/cosmjs-types";
+import {
+  createAuthzExecPinAminoConverters,
+  createWasmPinAminoConverters,
+} from "@/lib/wasmPinAuthz";
 import { createWasmAminoConverters } from "@cosmjs/cosmwasm-stargate";
 import { createDefaultAminoConverters } from "@cosmjs/stargate";
 
 export const aminoConverters = {
   ...createDefaultAminoConverters(),
   ...createWasmAminoConverters(),
+  ...createWasmPinAminoConverters(),
+  ...createAuthzExecPinAminoConverters(),
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,5 +1,7 @@
 import { MsgGetter } from "..";
 import { MsgTypeUrl, MsgTypeUrls } from "../../../../types/txMsg";
+import MsgAuthzPinCodesForm from "./MsgAuthzPinCodesForm";
+import MsgAuthzUnpinCodesForm from "./MsgAuthzUnpinCodesForm";
 import MsgBeginRedelegateForm from "./MsgBeginRedelegateForm";
 import MsgCreateVestingAccountForm from "./MsgCreateVestingAccountForm";
 import MsgDelegateForm from "./MsgDelegateForm";
@@ -62,6 +64,11 @@ const MsgForm = ({ msgType, ...restProps }: MsgFormProps) => {
       return <MsgExecuteContractForm {...restProps} />;
     case MsgTypeUrls.MigrateContract:
       return <MsgMigrateContractForm {...restProps} />;
+    // Authz-wrapped wasm pin/unpin (gov grant → admin multisig)
+    case MsgTypeUrls.AuthzPinCodes:
+      return <MsgAuthzPinCodesForm {...restProps} />;
+    case MsgTypeUrls.AuthzUnpinCodes:
+      return <MsgAuthzUnpinCodesForm {...restProps} />;
     default:
       return null;
   }

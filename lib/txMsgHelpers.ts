@@ -44,7 +44,12 @@ const gasOfMsg = (msgType: MsgTypeUrl): number => {
     case MsgTypeUrls.ExecuteContract:
       return 150_000;
     case MsgTypeUrls.MigrateContract:
-      return 150_000;
+      // Mixnet counter-resync walks several nodes' delegations.
+      return 2_000_000;
+    case MsgTypeUrls.AuthzPinCodes:
+    case MsgTypeUrls.AuthzUnpinCodes:
+    case MsgTypeUrls.Exec:
+      return 250_000;
     default:
       throw new Error("Unknown msg type");
   }
@@ -56,24 +61,29 @@ export const gasOfTx = (msgTypes: readonly MsgTypeUrl[]): number => {
   return totalTxGas;
 };
 
+const codecTypeUrls = new Set(Object.keys(MsgCodecs));
+
 export const isKnownMsgTypeUrl = (typeUrl: string): typeUrl is MsgTypeUrl =>
   Object.values(MsgTypeUrls).includes(typeUrl as MsgTypeUrl);
 
+const hasMsgCodec = (typeUrl: string): typeUrl is keyof typeof MsgCodecs =>
+  codecTypeUrls.has(typeUrl);
+
 export const exportMsgToJson = (msg: EncodeObject): EncodeObject => {
-  if (isKnownMsgTypeUrl(msg.typeUrl)) {
+  if (hasMsgCodec(msg.typeUrl)) {
     return { ...msg, value: MsgCodecs[msg.typeUrl].toJSON(msg.value) };
   }
 
-  throw new Error("Unknown msg type");
+  throw new Error(`Unknown msg type: ${msg.typeUrl}`);
 };
 
 const importMsgFromJson = (msg: EncodeObject): EncodeObject => {
-  if (isKnownMsgTypeUrl(msg.typeUrl)) {
+  if (hasMsgCodec(msg.typeUrl)) {
     const parsedValue = MsgCodecs[msg.typeUrl].fromJSON(msg.value);
     return { ...msg, value: parsedValue };
   }
 
-  throw new Error("Unknown msg type");
+  throw new Error(`Unknown msg type: ${msg.typeUrl}`);
 };
 
 export const dbTxFromJson = (txJson: string): DbTransactionParsedDataJson | null => {
